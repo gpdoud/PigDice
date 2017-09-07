@@ -9,27 +9,32 @@ namespace PigDice {
 		Random rnd = new Random();
 
 		int RollDice() {
-			return rnd.Next(6) + 1;
+			var roll1 = rnd.Next(6) + 1;
+			var roll2 = rnd.Next(6) + 1;
+			return roll1 + roll2;
 		}
 		int RunPigDice() {
 			var Total = 0;
-			int Die = 0;
+			int Die;
 			do {
 				Die = RollDice();
 				if(Die != 1) {
-					Total += Die;
+					Total = Total + Die;
 				}
 			} while (Die != 1);
-			//Console.WriteLine($"Total this game is {Total}");
+			Console.WriteLine($"Total this game is {Total}");
 			return Total;
 		}
 		void Run() {
 			var BestTotal = 0;
 			//for (var idx = 0; idx < 1000000; idx++) {
 			var counter = 0;
-			while(counter++ < 100) { 
+			while(counter++ < 10) { 
 				var ThisGame = RunPigDice();
-				BestTotal = (ThisGame > BestTotal) ? ThisGame : BestTotal;
+				//BestTotal = (ThisGame > BestTotal) ? ThisGame : BestTotal;
+				if(ThisGame > BestTotal) {
+					BestTotal = ThisGame;
+				}
 			}
 			Console.WriteLine($"Best game score is {BestTotal} in only {counter-1} rolls.");
 		}
