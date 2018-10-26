@@ -40,7 +40,7 @@ namespace GregoryDoud.Games {
 					Total = Total + Die;		// accumulate the roll into the total
 				}
 			} while (Die != 1);					// continue if the roll is not one
-			Console.WriteLine($"Total this game is {Total} in {Rolls} rolls.");
+			//Console.WriteLine($"Total this game is {Total} in {Rolls} rolls.");
 			return (Total, Rolls);				// returns both the total and the number of rolls
 		}
 		/// <summary>
@@ -52,12 +52,12 @@ namespace GregoryDoud.Games {
 			var BestTotal = 0;					// holds the highest total of all games
 			var BestRolls = 0;					// holds the number of rolls for the highest game
 			var counter = 0;                    // how many times to play the game
-			var GamesToPlay = 1000;				// number of games to play
+			var GamesToPlay = 1000000000;				// number of games to play
 			while(counter++ < GamesToPlay) {	// continue playing until we played all of them
 				var (Total, Rolls) = RunPigDiceGame();	// play the game and return the total and number of rolls
 				if(Total > BestTotal) {			// if the current total is better than the previous best total
 					BestTotal = Total;			// save the new total
-					BestRolls = Rolls;			// and the number of rolls it took
+					BestRolls = Rolls;          // and the number of rolls it took
 				}
 			}
 			Console.WriteLine($"Best game score is {BestTotal} in only {BestRolls} rolls.");
